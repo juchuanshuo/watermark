@@ -7,22 +7,14 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <meta name="description" content="">
 <meta name="author" content="">
-<title>SmallMing blog</title>
-<style type="text/css">
-
-.hr0 {
-	height: 1px;
-	border: none;
-	border-top: 2px solid black
-}
-</style>
-<title id="contentTitle"></title>
+<link rel="icon" href="/favicon.ico">
+<title>数字水印</title>
 
 <!-- Bootstrap core CSS -->
 <link href="/resource/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="/resource/bootstrap-3.3.7/css/blog.css" rel="stylesheet">
+<link href="/resource/bootstrap-3.3.7/css/dashboard.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -31,98 +23,51 @@
     <![endif]-->
 </head>
 
-<body style="background: #e6e6d5">
+<body>
 
-
-
-	<div class="container">
-
-		<div class="blog-header row">
-			<img alt="这里是图片" src="/resource/img/2.jpg" width="100%" height="100%">
-		</div>
-		<div class="row">
-			<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/index.html">数字水印</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="">首页</a></li>
-					<li><a href="/content.html">文章</a></li>
-					<li><a href="/talk.html">杂谈</a></li>
-					<li><a href="/aboutMe.html">关于我</a></li>
-					<li><a href="/messageBoard.html">留言板</a></li>
-					<li><a href="/transfer.html">传送门</a></li>
+					<li class = "active"><a href="/index.html">首页</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 文字水印 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="/textIn.html">水印嵌入</a></li>
+							<li><a href="/textOut.html">水印提取</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 图像水印 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="/picIn.html">水印嵌入</a></li>
+							<li><a href="/picOut.html">水印提取</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 脆弱水印 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="/fragile.html">水印嵌入</a></li>
+							<li><a href="/checkFragile.html">水印认证</a></li>
+						</ul></li>
+					<!-- <li><a href="#">关于</a></li> -->
 				</ul>
-			</nav>
-		</div>
-
-
-		<br>
-		<div class="row">
-			<div class="col-sm-9" style="margin-left: -15px;">
-				<div id="myCarousel" class="carousel slide">
-					<!-- 轮播（Carousel）指标 -->
-					<ol class="carousel-indicators">
-						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#myCarousel" data-slide-to="1"></li>
-						<li data-target="#myCarousel" data-slide-to="2"></li>
-					</ol>
-					<!-- 轮播（Carousel）项目 -->
-					<div class="carousel-inner">
-						<div class="item active">
-							<img src="/resource/img/3.jpg" width="150%" alt="First slide">
-						</div>
-						<div class="item">
-							<img src="/resource/img/3.jpg" width="150%" alt="Second slide">
-						</div>
-						<div class="item">
-							<img src="/resource/img/3.jpg" width="150%" alt="Third slide">
-						</div>
-					</div>
-					<!-- 轮播（Carousel）导航 -->
-					<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-				</div>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+					<button type="button" class="btn btn-default">搜索</button>
+				</form>
 			</div>
-
-
-			<div class="col-sm-3 blog-sidebar" style="margin-left: 15px">
-				<div class="sidebar-module sidebar-module-inset">
-					<h4>关注我</h4>
-					<ol class="list-unstyled">
-						<li><a href="#">github</a></li>
-						<li><a href="#">知乎</a></li>
-						<li><a href="#">微博</a></li>
-					</ol>
-				</div>
-				<div class="sidebar-module sidebar-module-inset">
-					<h4>友情链接</h4>
-					<ol class="list-unstyled">
-						<li><a href="http://115.159.107.178">JiatLn' Blog</a></li>
-						<li><a href="#">广告位招租</a></li>
-						<li><a href="#">广告位招租</a></li>
-					</ol>
-				</div>
-			</div>
-			<!-- /.blog-sidebar -->
-
 		</div>
-		<!-- /.row -->
-		<div class="row">
-			<br>
-			<h4>
-				<strong>最新文章</strong>
-			</h4>
-			<hr class="hr0">
-			<div id="content"></div>
-		</div>
-
-	</div>
-	<!-- /.container -->
-
-	<footer class="blog-footer" style="background: #e6e6d5">
-		<p>作者@小明</p>
-		<p>
-			<a href="#">回到顶部</a>
+	</nav>
+	<div class="jumbotron text-center" style = "margin-bottom:0px;background-image:url(/resource/img/3333.jpg);height:680px">
+		<h1>为图片刻上你的印记</h1>
+			<a href="/textIn.html" class="btn btn-primary btn-lg" role="button"> 点此开始</a>
 		</p>
-	</footer>
-
+	</div>
 
 	<!-- Bootstrap core JavaScript
     ================================================== -->
@@ -130,33 +75,38 @@
 	<script type="text/javascript" src="/resource/jquery/jquery-3.2.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="/resource/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			var href = location.search;
-			var id = href.split("=");
-			$.ajax({
-				type : "POST",
-				dataType : "json",
-				url : "/list/main",
-				contentType : "application/x-www-form-urlencoded",
-				success : function(result) {
-					$("#content").empty();
-					for (var i = 0; i < result.list.length; i++) {
-						var div = $('<div></div>').addClass("sidebar-module-inset");
-						div.append('<h4><a style="color:black" href = "/list/content?id=' + result.list[i].contentId + '"><strong>' + result.list[i].contentName + '</strong></a><h4>');
-						div.append('<br><span>' + result.list[i].summary + '</span>');
-						div.append('<br><a style="color:red" href = "/list/content?id=' + result.list[i].contentId + '">>>>阅读全文</a>');
-						div.append('<hr>');
-						div.appendTo("#content");
-						
-					}
-					$("#content").trigger('create');
-				},
-				error : function(data) {
-					alert("error:" + data.responseText);
-				}
-			});
-		});
+	<script type="text/javascript" src="/resource/lib/ueditor/1.4.3/ueditor.config.js"></script>
+	<script type="text/javascript" src="/resource/lib/ueditor/1.4.3/ueditor.all.min.js">
+		
 	</script>
+	<script type="text/javascript" src="/resource/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript">
+		/*
+		 * 对选中的标签激活active状态，对先前处于active状态但之后未被选中的标签取消active
+		 * （实现左侧菜单中的标签点击后变色的效果）
+		 */
+		$(function() {
+			$('ul.nav > li').click(function(e) {
+				//e.preventDefault();    加上这句则导航的<a>标签会失效
+				$('ul.nav > li').removeClass('active');
+				$(this).addClass('active');
+			});
+			showAtRight("welcome");
+		});
+
+		/*
+		 * 利用div实现左边点击右边显示的效果（以id="content"的div进行内容展示）
+		 * 注意：
+		 *   ①：js获取网页的地址，是根据当前网页来相对获取的，不会识别根目录；
+		 *   ②：如果右边加载的内容显示页里面有css，必须放在主页（即例中的index.jsp）才起作用
+		 *   （如果单纯的两个页面之间include，子页面的css和js在子页面是可以执行的。 主页面也可以调用子页面的js。但这时要考虑页面中js和渲染的先后顺序 ）
+		 */
+		function showAtRight(url) {
+			$("#content").load(url, function(responseTxt, statusTxt, xhr) {
+
+			});
+		}
+	</script>
+
 </body>
 </html>

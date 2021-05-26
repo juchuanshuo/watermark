@@ -8,7 +8,7 @@
 	</settings>
 	<!-- 设置别名 -->
 	<typeAliases>
-		<package name="com.myBlog.domain" />
+		<package name="com.watermark.domain" />
 	</typeAliases>
 	<plugins>
 		<plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>

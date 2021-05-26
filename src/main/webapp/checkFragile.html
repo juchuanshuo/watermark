@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="/favicon.ico">
+<title>数字水印</title>
+
+<!-- Bootstrap core CSS -->
+<link href="/resource/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/resource/bootstrap-3.3.7/css/dashboard.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/index.html">数字水印</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/index.html">首页</a></li>
+					<li class="dropdowne"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 文字水印 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="/textIn.html">水印嵌入</a></li>
+							<li><a href="/textOut.html">水印提取</a></li>
+						</ul></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 图像水印 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="/picIn.html">水印嵌入</a></li>
+							<li><a href="/picOut.html">水印提取</a></li>
+						</ul></li>
+					<li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 脆弱水印 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="/fragile.html">水印嵌入</a></li>
+							<li><a href="/checkFragile.html">水印认证</a></li>
+						</ul></li>
+					<!-- <li><a href="#">关于</a></li> -->
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+					<button type="button" class="btn btn-default">搜索</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+
+	<div id="step-1" style="text-align: center;">
+		<h2 class="StepTitle">上传待认证图片</h2>
+		<form role="form" id="test" style="text-align: center;">
+			<div class="file-container" style="display: inline-block; position: relative; overflow: hidden; vertical-align: middle">
+				<img id="pre" style="width: 150px; height: 100px" src="/resource/img/up.jpg" class="img-rounded"> <input type="file" name="file" id="inputfile" onchange="setName(this.files[0])" style="position: absolute; top: 0; left: 0; font-size: 34px; opacity: 0"> <br> <span id="filename"></span>
+			</div>
+			<!-- <input type="file" name="file" id="inputfile" onchange="setName(this.files[0])"> -->
+			<br>
+			<button type='button' onclick="testUpload()" style="align: center; margin-top: 50px" class="btn btn-primary">上传并认证</button>
+			<br>
+		</form>
+		<!-- <button  id="down" type='button' onclick="download()" style="align: center;display:none; margin-top: 50px" class="btn btn-primary">下载结果</button> -->
+		<form action="http://localhost:8080/down" method="get">
+			<br>
+			<span id="checkResult"></span> <br>
+			<button name="name" id="down" type='submit' style="align: center; display: none; margin-top: 50px" class="btn btn-primary">下载结果</button>
+		</form>
+		<!-- <img id="setImg"> -->
+		<span id="outText"></span>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script type="text/javascript" src="/resource/jquery/jquery-3.2.1.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script type="text/javascript" src="/resource/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/resource/lib/ueditor/1.4.3/ueditor.config.js"></script>
+	<script type="text/javascript" src="/resource/lib/ueditor/1.4.3/ueditor.all.min.js"></script>
+	<script type="text/javascript" src="/resource/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+	<script type="text/javascript">
+		/*
+		 * 对选中的标签激活active状态，对先前处于active状态但之后未被选中的标签取消active
+		 * （实现左侧菜单中的标签点击后变色的效果）
+		 */
+
+		var name = "";
+
+		function setName(file) {
+			name = file.name;
+			$("#filename").text(name);
+			//获取文件  
+			//创建读取文件的对象  
+			var reader = new FileReader();
+
+			//创建文件读取相关的变量  
+			var imgFile;
+
+			//为文件读取成功设置事件  
+			reader.onload = function(e) {
+				imgFile = e.target.result;
+				$("#pre").attr('src', imgFile);
+			};
+
+			//正式读取文件  
+			reader.readAsDataURL(file);
+		}
+
+		$(function() {
+			/* $.ajax({
+				type : "POST",
+				dataType : "json",
+				url : "/TextIn",
+				contentType : "application/x-www-form-urlencoded",
+				success : function(result) {
+					alert(result);
+				},
+				error : function(data) {
+					alert("error:" + data.responseText);
+				}
+			});
+
+			$.ajax({
+				type : "POST",
+				dataType : "json",
+				url : "/TextOut",
+				contentType : "application/x-www-form-urlencoded",
+				success : function(result) {
+					alert(result);
+				},
+				error : function(data) {
+					alert("error:" + data.responseText);
+				}
+			}); */
+			// Smart Wizard 	
+		});
+		function testUpload() {
+			var form = new FormData(document.getElementById("test"));
+			var url = "/FragileOut"; //这里的“项目访问路径”要改为你自己的路径  
+			$.ajax({
+				url : url,
+				data : form,
+				type : 'post',
+				async : false,
+				processData : false,
+				contentType : false,
+				success : function(result) {
+					name = result;
+					if (result.text === "ok") {
+						$("#checkResult").text("认证通过！");
+					} else if (result.text === "fail") {
+						$("#checkResult").text("认证未通过！请点击下方按钮下载认证结果");
+						$("#down").attr("value", result.name);
+						$("#down").show();
+					}
+
+				},
+				error : function(data) {
+					$("#checkResult").text("认证过程出现异常");
+				}
+			});
+		}
+	</script>
+</body>
+</html>
